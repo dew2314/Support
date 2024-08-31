@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="공지사항"
+        android:icon="@drawable/home"/>
+    <item
+        android:id="@+id/search"
+        android:title="생활편의"
+        android:icon="@drawable/search"/>
+    <item
+        android:id="@+id/food"
+        android:title="공동배달"
+        android:icon="@drawable/bike"/>
+    <item
+        android:id="@+id/community"
+        android:title="커뮤니티"
+        android:icon="@drawable/community"/>
+</menu>

@@ -1,0 +1,263 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JoinActivity">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 뒤로가기 버튼 -->
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:background="@android:color/white"
+            android:src="@drawable/back" />
+
+        <!-- 로그인 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="회원가입"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- 포털아이디 입력란과 전송 버튼 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="32dp"
+        android:hint="포털 아이디"
+        android:textColorHint="#989898"
+        app:boxBackgroundMode="none"
+        app:boxStrokeColor="#BFBFBF"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <!-- FrameLayout 사용 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/potalId"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/top_rounded_edittext_background"
+                android:drawableStart="@drawable/ptid"
+                android:drawablePadding="8dp"
+                android:hint="포털 아이디"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColorHint="#989898" />
+
+            <FrameLayout
+                android:layout_width="72dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="5dp">
+
+                <ImageView
+                    android:id="@+id/send_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/send" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="전송"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+        </FrameLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- 인증코드 입력란과 확인 버튼 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:hint="인증코드 입력"
+        android:textColorHint="#989898"
+        app:boxBackgroundColor="@android:color/white"
+        app:boxBackgroundMode="none"
+        app:boxStrokeColor="#BFBFBF"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/username_textInputLayout">
+
+        <!-- FrameLayout 사용 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/AuthCode"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bottom_rounded_edittext_background"
+                android:drawableStart="@drawable/pwd"
+                android:drawablePadding="10dp"
+                android:hint="인증코드 입력"
+                android:inputType="textPassword"
+                android:padding="16dp"
+                android:textColorHint="#989898" />
+
+            <FrameLayout
+                android:layout_width="72dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="5dp">
+
+                <ImageView
+                    android:id="@+id/confirm_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#767676"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/confirm" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="확인"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+        </FrameLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="208dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="32dp" />
+
+    <!-- 비밀번호 입력란 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="24dp"
+        android:hint="비밀번호"
+        android:textColorHint="#989898"
+        app:boxBackgroundMode="none"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/password_textInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/top_rounded_edittext_background"
+            android:drawableStart="@drawable/pwd"
+            android:drawablePadding="10dp"
+            android:hint="비밀번호"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColorHint="#989898" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- 비밀번호 확인 입력란 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_confirm_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:hint="비밀번호 확인"
+        android:textColorHint="#989898"
+        app:boxBackgroundMode="none"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/password_input_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_confirm_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/medium_rounded_edittext"
+            android:drawableStart="@drawable/pwd"
+            android:drawablePadding="10dp"
+            android:hint="비밀번호 확인"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColorHint="#989898" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- 닉네임 입력란 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nickname_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:hint="닉네임"
+        android:textColorHint="#989898"
+        app:boxBackgroundMode="none"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/password_confirm_input_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nickname_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bottom_rounded_edittext_background"
+            android:drawableStart="@drawable/ptid"
+            android:drawablePadding="10dp"
+            android:hint="닉네임"
+            android:inputType="text"
+            android:padding="16dp"
+            android:textColorHint="#989898" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- 회원가입 완료 버튼 -->
+    <android.widget.Button
+        android:id="@+id/joinDone"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="203dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/joindone"
+        app:cornerRadius="8dp"
+        android:text="회원가입 완료하기"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/nickname_input_layout"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

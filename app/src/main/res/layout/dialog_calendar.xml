@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- 캘린더 컨테이너 -->
+    <LinearLayout
+        android:id="@+id/calendarContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <!-- 확인 버튼 -->
+    <android.widget.Button
+        android:id="@+id/confirm_button"
+        android:layout_width="315dp"
+        android:layout_height="36dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_button"
+        android:text="확인"
+        android:textColor="@color/white"
+        android:layout_gravity="center" />
+
+</LinearLayout>

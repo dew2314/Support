@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <!-- Toolbar -->
+
+    <!-- 포털 아이디 -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 뒤로가기 버튼 -->
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:background="@android:color/white"
+            android:src="@drawable/back"/>
+
+        <!-- 로그인 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="로그인"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:hint="포털 아이디"
+        android:textColorHint="#989898"
+        app:boxBackgroundMode="none"
+        app:boxStrokeColor="#BFBFBF"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/potalId"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/top_rounded_edittext_background"
+            android:drawableStart="@drawable/ptid"
+            android:drawablePadding="10dp"
+            android:padding="16dp"
+            android:hint="포털 아이디"
+            android:inputType="text"
+            android:textColorHint="#989898" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- 비밀번호 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:hint="비밀번호"
+        android:textColorHint="#989898"
+        app:boxBackgroundMode="none"
+        app:boxBackgroundColor="@android:color/white"
+        app:boxStrokeColor="#BFBFBF"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/username_textInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/potalPwd"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bottom_rounded_edittext_background"
+            android:drawableStart="@drawable/pwd"
+            android:drawablePadding="10dp"
+            android:padding="16dp"
+            android:hint="비밀번호"
+            android:inputType="textPassword"
+            android:textColorHint="#989898" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- 로그인 버튼 -->
+    <android.widget.Button
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/rounded_button"
+        android:text="로그인"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/password_textInputLayout"/>
+
+    <!-- 비밀번호 찾기 및 회원가입 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/loginBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="361dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/findpwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호 찾기"
+            android:textSize="10sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="|"
+            android:textSize="10sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/joinLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="회원가입"
+            android:textSize="10sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

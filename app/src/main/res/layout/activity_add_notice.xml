@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddNoticeActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--backButton -->
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:background="@android:color/white"
+            android:src="@drawable/back"/>
+
+        <!-- 공지사항 작성 -->
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="공지사항 작성"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <android.widget.Button
+            android:id="@+id/checkButton"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_button"
+            android:padding="8dp"
+            android:text="작성완료"
+            android:textSize="11sp"
+            android:textColor="@color/white" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- 제목 입력 필드 -->
+    <EditText
+        android:id="@+id/title_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@android:color/transparent"
+        android:hint="제목 입력"
+        android:minLines="2"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <!-- 내용 입력 필드 -->
+    <EditText
+        android:id="@+id/content_input"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="24dp"
+        android:background="@android:color/transparent"
+        android:gravity="top|start"
+        android:hint="내용 입력"
+        android:minLines="20"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_input" />
+
+    <!-- 시작 날짜 선택 -->
+    <TextView
+        android:id="@+id/start_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:text="시작날짜"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content_input" />
+
+    <TextView
+        android:id="@+id/start_date_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="2024-08-16"
+        app:layout_constraintStart_toEndOf="@id/start_date_label"
+        app:layout_constraintTop_toTopOf="@id/start_date_label" />
+
+    <!-- 종료 날짜 선택 -->
+    <TextView
+        android:id="@+id/end_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="종료날짜"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/start_date_label" />
+
+    <TextView
+        android:id="@+id/end_date_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="2024-08-16"
+        app:layout_constraintStart_toEndOf="@id/end_date_label"
+        app:layout_constraintTop_toTopOf="@id/end_date_label" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
