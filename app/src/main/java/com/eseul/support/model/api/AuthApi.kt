@@ -1,9 +1,8 @@
 package com.eseul.support.model.api
 
 import com.eseul.support.model.UserModel
-import retrofit2.Call
-import retrofit2.http.FieldMap
-import retrofit2.http.FormUrlEncoded
+import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.POST
 
 
@@ -14,8 +13,7 @@ interface AuthApi {
         }
     }
 
-    @FormUrlEncoded
     @POST("/member/login")
-    fun login(@FieldMap body: HashMap<String, String>): Call<UserModel>
+    suspend fun login(@Body body: HashMap<String, String>): Response<UserModel>
 }
 

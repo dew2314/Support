@@ -1,22 +1,27 @@
 package com.eseul.support
 
+import LoginViewModelFactory
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.eseul.support.model.UserModel
 import com.eseul.support.model.api.AuthApi
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.await
+import com.eseul.support.repository.AuthRepository
+import com.eseul.support.viewmodel.LoginViewModel
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,68 +30,71 @@ class LoginActivity : AppCompatActivity() {
         // Toolbar 설정
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바 제목 표시 비활성화
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        // 로그인 버튼 클릭 시 메인 화면으로 이동
+        // ViewModel 초기화
+        val authApi = AuthApi.create()
+        val authRepository = AuthRepository(authApi)
+        loginViewModel = ViewModelProvider(this, LoginViewModelFactory(authRepository))
+            .get(LoginViewModel::class.java)
+
+        // 사용자 입력
+        val usernameEditText = findViewById<EditText>(R.id.potalId) // 포털 아이디 입력란
+        val passwordEditText = findViewById<EditText>(R.id.potalPwd) // 비밀번호 입력란
+
+        // 로그인 버튼 클릭 시
         val loginButton: Button = findViewById(R.id.loginBtn)
         loginButton.setOnClickListener {
-            // 로그인 처리
-//            saveLoginStatus(true)
-            val authApi=AuthApi.create()
-            val body = hashMapOf(
-                "loginId" to "test1234",
-                "password" to "qwer1234!"
-            )
-            Log.d("TAG", "onCreate: $body")
-            authApi.login(body).enqueue(object : Callback<UserModel>{
-                override fun onResponse(
-                    call: Call<UserModel>,
-                    response: Response<UserModel>
-                ) {
-                    Log.d("TAG", "onResponse: ${response.body()}")
-                    Log.d("TAG", "onResponse: Success!")
-                }
-
-                override fun onFailure(call: Call<UserModel>, t: Throwable) {
-                    Log.d("TAG", "onFailure: Failure!")
-                }
-
-            })
-
-            // MainActivity로 이동
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish() // 로그인 후 로그인 화면 종료
+            val username = usernameEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
+            lifecycleScope.launch {
+                loginViewModel.login(username, password)
+            }
         }
 
-        // 뒤로가기 버튼 클릭 시 이전 화면으로 이동
+        // 로그인 결과 
+        loginViewModel.loginResult.observe(this) { result ->
+            if (result is UserModel) {
+                Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+
+                // 로그인 성공 시 토큰 저장
+                result.let {
+                    PreferenceHelper.setLoggedIn(this, true)
+                    PreferenceHelper.setAccessToken(this, it.loginData.loginAcToken)
+                    PreferenceHelper.setRefreshToken(this, it.loginData.loginReToken)
+                }
+                //helper.accessToken = "asdasd...."
+                //helper.refershToken = "asdasd...."
+                //helper.refershToken
+                //loginViewModel.saveToken()
+
+                // MainActivity로 이동
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
+                Log.d("TAG", "Login failed: ${result}")
+            }
+        }
+
+        // 뒤로가기 버튼 클릭 시
         val backButton: ImageButton = findViewById(R.id.back_button)
         backButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
-        // 비밀번호 찾기 텍스트 클릭 시 이동할 액티비티 설정
-        val additionalTextView: TextView = findViewById(R.id.findpwd)
-        additionalTextView.setOnClickListener {
+        // 비밀번호 찾기 및 회원가입 클릭 이벤트 처리
+        val findPwdTextView: TextView = findViewById(R.id.findpwd)
+        findPwdTextView.setOnClickListener {
             val intent = Intent(this, FindPasswordActivity::class.java)
             startActivity(intent)
         }
 
-        // 회원가입 TextView 클릭 이벤트 처리
-        val registerTextView: TextView = findViewById(R.id.joinLogin)
-        registerTextView.setOnClickListener {
+        val joinTextView: TextView = findViewById(R.id.joinLogin)
+        joinTextView.setOnClickListener {
             val intent = Intent(this, JoinActivity::class.java)
             startActivity(intent)
         }
     }
-
-    private fun saveLoginStatus(isLoggedIn: Boolean) {
-        val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putBoolean("is_logged_in", isLoggedIn)
-        editor.apply()
-    }
-
-
 }

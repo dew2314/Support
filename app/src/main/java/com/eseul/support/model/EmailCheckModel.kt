@@ -3,42 +3,38 @@ package com.eseul.support.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class UserModel (
+data class EmailCheckModel(
     @SerializedName("statusCode")
     @Expose
-    var loginStCode: Int,
+    var emailCheckSt: Int,
     @SerializedName("statusMessage")
     @Expose
-    var loginMessage: String,
+    var emailCheckMessage: String,
     @SerializedName("responseTime")
     @Expose
-    var loginTime: String,
+    var emailCheckTime: String,
     @SerializedName("data")
     @Expose
-    var loginData: LoginData,
+    var emailCheckData: String,
     @SerializedName("code")
     @Expose
-    var loginCode: String,
+    var emailCheckCode: String
 )
 
-data class LoginData(
-    @SerializedName("accessToken")
-    @Expose
-    var loginAcToken: String,
-    @SerializedName("refreshToken")
-    @Expose
-    var loginReToken: String,
-)
-
-data class ErrorUserModel(
+data class ErrorEmailCheckModel(
     @SerializedName("statusCode")
-    var erloginStCode: Int,
+    @Expose
+    var erEmailCheckSt: Int,
     @SerializedName("statusMessage")
-    var erloginMessage: String,
+    @Expose
+    var erEmailCheckMessage: String,
     @SerializedName("responseTime")
-    var erloginTime: String,
+    @Expose
+    var erEmailCheckTime: String,
     @SerializedName("data")
-    var erloginData: String,
+    @Expose
+    var erEmailCheckData: String,
     @SerializedName("code")
-    var erloginCode: String,
+    @Expose
+    var erEmailCheckCode: String
 )

@@ -16,7 +16,7 @@
         android:theme="@style/Base.Theme.Support"
         tools:targetApi="31">
         <activity
-            android:name=".PiActivity"
+            android:name=".PrivacyActivity"
             android:exported="false" />
         <activity
             android:name=".InquiryActivity"

@@ -1,4 +1,4 @@
-package com.eseul.support
+package com.eseul.support.fragment
 
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import com.eseul.support.R
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale

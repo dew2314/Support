@@ -1,6 +1,7 @@
-package com.eseul.support
+package com.eseul.support.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.eseul.support.R
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -194,7 +196,7 @@ class CustomCalendarFragment : Fragment() {
             calendarGrid.addView(emptyView)
         }
 
-        val maxDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
+        var maxDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         var dayCounter = 1
         var currentRow = 0
 
@@ -230,29 +232,51 @@ class CustomCalendarFragment : Fragment() {
             currentRow++
         }
 
-        // 다음 달의 날짜를 필요한 만큼만 추가
-        val daysToFill = (7 - (startDayOfWeek + maxDay) % 7) % 7
-        if (daysToFill > 0) {
-            var nextMonthDayCounter = 1
+        var lastDate = Calendar.getInstance()
+        Log.d("TAG", "updateCalendar: ${lastDate}")
+        Log.d("TAG", "updateCalendar: ${calendar}")
+        Log.d("TAG", "updateCalendar: ${calendar.get(Calendar.MONTH)}")
+        lastDate.set(Calendar.YEAR, calendar.get(Calendar.YEAR))
+        lastDate.set(Calendar.MONTH, calendar.get(Calendar.MONTH))
+        lastDate.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
 
-            for (i in 0 until daysToFill) {
-                val nextMonthView = TextView(requireContext()).apply {
-                    text = nextMonthDayCounter.toString() // 다음 달의 날짜
+
+        Log.d(
+            "TAG",
+            "updateCalendar: $maxDay $dayCounter $currentRow ${lastDate.get(Calendar.DAY_OF_WEEK)} ${lastDate}"
+        )
+
+        maxDay = 7 - lastDate.get(Calendar.DAY_OF_WEEK)
+        dayCounter = 1
+        currentRow -= 1
+
+        while (dayCounter <= maxDay) {
+            for (i in lastDate.get(Calendar.DAY_OF_WEEK) until 7) {
+                val dayView = TextView(requireContext()).apply {
+                    text = dayCounter.toString()
                     gravity = Gravity.CENTER
                     textSize = 16f
-                    setTextColor(android.graphics.Color.parseColor("#CACACA")) // 다음 달 날짜 색상 설정
+                    setTextColor(android.graphics.Color.parseColor("#CACACA"))
+                    val topMargin = if (currentRow == 0) 75 else 0
+                    val leftRightMargin = 34
+                    val bottomMargin = 30
+
                     layoutParams = GridLayout.LayoutParams().apply {
                         width = 0
                         height = GridLayout.LayoutParams.WRAP_CONTENT
-                        columnSpec = GridLayout.spec((maxDay + startDayOfWeek) % 7 + i, 1f)
+                        columnSpec = GridLayout.spec(i, 1f)
                         rowSpec = GridLayout.spec(currentRow)
-                        setMargins(34, 0, 34, 30)
+                        setMargins(
+                            leftRightMargin,
+                            topMargin,
+                            leftRightMargin,
+                            bottomMargin
+                        )
                     }
                 }
-                calendarGrid.addView(nextMonthView)
-                nextMonthDayCounter++
+                calendarGrid.addView(dayView)
+                dayCounter++
             }
         }
     }
-
 }

@@ -64,16 +64,28 @@
         android:background="@android:color/transparent"
         android:hint="제목 입력"
         android:minLines="2"
-        android:textSize="16sp"
+        android:textSize="13sp"
+        android:paddingStart="13dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <!-- 구분선 (제목과 내용 사이) -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="#E4E4E4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_input" />
 
     <!-- 내용 입력 필드 -->
     <EditText
         android:id="@+id/content_input"
         android:layout_width="0dp"
-        android:layout_height="400dp"
+        android:layout_height="343dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="24dp"
@@ -81,10 +93,23 @@
         android:gravity="top|start"
         android:hint="내용 입력"
         android:minLines="20"
-        android:textSize="16sp"
+        android:textSize="12sp"
+        android:paddingTop="13dp"
+        android:paddingStart="13dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_input" />
+
+    <!-- 구분선 (내용과 시작 날짜 사이) -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="#E4E4E4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content_input" />
 
     <!-- 시작 날짜 선택 -->
     <TextView
@@ -94,6 +119,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:text="시작날짜"
+        android:textSize="12sp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/content_input" />
@@ -103,7 +129,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="2024-08-16"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@id/start_date_label"
         app:layout_constraintTop_toTopOf="@id/start_date_label" />
 
@@ -115,6 +141,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="종료날짜"
+        android:textSize="12sp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/start_date_label" />
@@ -124,7 +151,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="2024-08-16"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@id/end_date_label"
         app:layout_constraintTop_toTopOf="@id/end_date_label" />
 

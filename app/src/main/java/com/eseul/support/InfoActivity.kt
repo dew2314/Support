@@ -1,9 +1,8 @@
 package com.eseul.support
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 class InfoActivity : AppCompatActivity() {
@@ -19,8 +18,7 @@ class InfoActivity : AppCompatActivity() {
         // 뒤로가기 버튼 클릭 시 공지화면으로 이동
         val backButton: ImageButton = findViewById(R.id.back_button)
         backButton.setOnClickListener {
-            val intent= Intent(this,MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
 
